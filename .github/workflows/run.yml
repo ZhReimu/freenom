@@ -12,7 +12,7 @@
 #
 ######  end 说明  ######
 
-name: Run it on action
+name: Freenom域名自动续期
 
 on:
   push:
@@ -23,15 +23,14 @@ on:
 jobs:
   run-it:
     runs-on: ubuntu-18.04
-    name: Run it on action
     steps:
       - name: Checkout master
         uses: actions/checkout@v2
-      - name: Setup PHP
+      - name: 设置 PHP 运行环境
         uses: shivammathur/setup-php@v2
         with:
           php-version: '7.2'
-      - name: Setting
+      - name: 设置环境变量
         run: |
           echo 'Renew freenom domain name automatically.'
           echo '@Author of yml configuration file: RouRouX <https://github.com/RouRouX> & mybsdc <mybsdc@gmail.com>'
@@ -50,6 +49,6 @@ jobs:
           if [ '${{ secrets.TELEGRAM_BOT_ENABLE }}' != '' ]; then sed -i "s/^TELEGRAM_BOT_ENABLE=.*$/TELEGRAM_BOT_ENABLE='${{ secrets.TELEGRAM_BOT_ENABLE }}'/" .env; fi
           if [ '${{ secrets.NOTICE_FREQ }}' != '' ]; then sed -i "s/^NOTICE_FREQ=.*$/NOTICE_FREQ='${{ secrets.NOTICE_FREQ }}'/" .env; fi
           sed -i "s/^ON_GITHUB_ACTIONS=.*$/ON_GITHUB_ACTIONS=true/" .env
-      - name: Run
+      - name: 开始运行
         run: |
           php run
