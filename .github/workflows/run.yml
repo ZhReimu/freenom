@@ -12,12 +12,10 @@
 #
 ######  end 说明  ######
 
-name: Freenom域名自动续期
+name: Freenom 域名自动续期
 
 on:
-  push:
-    branches:
-      - master
+  workflow_dispatch:
   schedule:
     - cron: 00 02 * * *
 jobs:
